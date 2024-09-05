@@ -1,7 +1,12 @@
+import sys
+import os
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
-from . import crud, models, schemas
-from .database import SessionLocal, engine
+from app import crud, models, schemas
+from app.database import SessionLocal, engine
+
+# Add the app directory to the sys.path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 models.Base.metadata.create_all(bind=engine)
 
